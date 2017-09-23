@@ -1,5 +1,5 @@
 //jQuery
-const $ = require("jquery");
+global.$ = require("jquery");
 
 window.onunload = function(){};
 
