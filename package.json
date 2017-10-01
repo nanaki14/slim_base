@@ -17,13 +17,18 @@
     "gulp-autoprefixer": "^3.1.1",
     "gulp-babel": "^7.0.0",
     "gulp-browserify": "^0.5.1",
-    "gulp-imagemin": "^3.2.0",
+    "gulp-imagemin": "^3.3.0",
     "gulp-notify": "^3.0.0",
     "gulp-plumber": "^1.1.0",
     "gulp-sass": "^3.1.0",
     "gulp-slim": "^0.3.0",
     "gulp-sourcemaps": "^2.6.1",
     "gulp-uglify": "^2.1.2",
-    "jquery": "^3.2.1"
+    "imagemin-gifsicle": "^5.2.0",
+    "imagemin-mozjpeg": "^6.0.0",
+    "imagemin-pngquant": "^5.0.1",
+    "imagemin-svgo": "^5.2.2",
+    "jquery": "^3.2.1",
+    "jquery.easing": "^1.4.1"
   }
 }

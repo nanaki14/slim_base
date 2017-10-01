@@ -3,6 +3,10 @@ const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
 const imagemin = require("gulp-imagemin");
+const mozjpeg = require('imagemin-mozjpeg');
+const pngquant = require('imagemin-pngquant');
+const gifsicle = require('imagemin-gifsicle');
+const svgo = require('imagemin-svgo');
 const uglify = require('gulp-uglify');
 const browserify = require('gulp-browserify');
 const babel = require('gulp-babel');
@@ -16,7 +20,7 @@ const baseDir = {
   sass: 'src/**/*.sass',
   js: 'src/**/*.js',
   slim: 'src/**/*.slim',
-  img: 'src/**/*.+(jpg|png|gif|svg)'
+  img: 'src/**/*.{png,jpg,gif,svg}'
 }
 
 //sassコンパイル
@@ -71,6 +75,12 @@ gulp.task('slim', function () {
 //画像圧縮
 gulp.task('imagemin', () => {
   gulp.src(baseDir.img)
+    .pipe(imagemin([
+      pngquant({ quality: '65-80', speed: 1 }),
+      {use: [mozjpeg()]},
+      imagemin.svgo(),
+      imagemin.gifsicle()
+    ]))
     .pipe(imagemin())
     .pipe(gulp.dest(baseDir.dest));
 });
@@ -107,4 +117,4 @@ gulp.task('watch', () => {
   ], ['copy']);
 });
 
-gulp.task('default', ['copy','sass','slim','babel','imagemin', 'watch']);
+gulp.task('default', ['copy','sass','slim','babel', 'watch']);
