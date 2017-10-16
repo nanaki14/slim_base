@@ -7,7 +7,7 @@ const ua = require("./_ua");
 
 let Common = function(){};
 
-$(() => {
+$(function() {
 
     if( _ua.Mobile || _ua.Tablet ){}
 
@@ -18,9 +18,9 @@ $(() => {
 Common = {
 
   //スムーススクロール
-  smoothScroll : () => {
+  smoothScroll : function() {
 
-    $('a[href^="#"]').click(() => {
+    $('a[href^="#"]').click(function() {
       $('html,body').animate({ scrollTop:
       $($(this).attr('href')).offset().top }, '600','easeInCubic');
       return false;
