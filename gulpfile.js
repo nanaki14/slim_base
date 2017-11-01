@@ -13,6 +13,7 @@ const babel = require('gulp-babel');
 const plumber = require("gulp-plumber");
 const slim = require("gulp-slim");
 const notify = require('gulp-notify');
+const changed = require('gulp-changed');
 const browserSync = require('browser-sync').create();
 
 const baseDir = {
@@ -63,6 +64,7 @@ gulp.task('babel', () => {
 //slim
 gulp.task('slim', function () {
   gulp.src([baseDir.slim, "!src/**/_*.slim"])
+    .pipe(changed(baseDir.dest))
     .pipe(plumber())
     .pipe(slim({
       include: true,
@@ -75,8 +77,9 @@ gulp.task('slim', function () {
 //画像圧縮
 gulp.task('imagemin', () => {
   gulp.src(baseDir.img)
+    .pipe(changed(baseDir.dest))
     .pipe(imagemin([
-      pngquant({ quality: '65-80', speed: 1 }),
+      pngquant({ quality: '75-95', speed: 1 }),
       {use: [mozjpeg()]},
       imagemin.svgo(),
       imagemin.gifsicle()
